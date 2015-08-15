@@ -18,7 +18,7 @@ Dumps out data that exists between the cursor location and the entered end addre
 
 ####Find buffer overflow v2.idc
 
-Finds shellcode and stops execution once shellcode has been found, allowing for the shellcode to be stepped through and debugged.
+Finds shellcode and stops execution once found, allowing for the shellcode to be stepped through and debugged.
 
 ####FindSysCalls_x32.idc / FindSysCalls_x64.idc
 
