@@ -1,3 +1,5 @@
+##Brief Descriptions - See IDC files for usage instructions.
+
 ### IDA-Scripts
 
 The following are a list of IDC scripts I've created over the last couple of years.
