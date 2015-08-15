@@ -22,11 +22,14 @@ Finds shellcode and stops execution once found, allowing for the shellcode to be
 
 ####FindSysCalls_x32.idc / FindSysCalls_x64.idc
 
-Scans for 32/64 bit syscall operands and renames the function that the syscall is located within and adds a comment to the syscall instruction line.<br>
-All found syscalls have a comment added to the IDA Output window and if a ptrace call exists, is noted at the end of the log output.<br>
+Scans for 32/64 bit syscall operands and renames the function that the syscall is located within and adds a comment to the syscall instruction line.
+
+All found syscalls have a comment added to the IDA Output window and if a ptrace call exists, is noted at the end of the log output.
+
 This script traces the disassembly should the syscall value be declared prior to the syscall.
 
 Not all SYSCALLS are included and would be better if they were stored in an external file.
+
 
 ####NOPBytes.idc
 
