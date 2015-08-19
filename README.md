@@ -16,7 +16,7 @@ Repeatedly defines a sequence of bytes as a DWORD as many times as the user tell
 
 Dumps out data that exists between the cursor location and the entered end address, an even number of bytes will be written to the "idaout,bin" file.
 
-####Find buffer overflow v2.idc
+#### FindShellCode_V2.idc
 
 Finds shellcode and stops execution once found, allowing for the shellcode to be stepped through and debugged.
 
