@@ -14,7 +14,7 @@ Repeatedly defines a sequence of bytes as a DWORD as many times as the user tell
 
 ####DumpMemoryToDisk.idc
 
-Dumps out data that exists between the cursor location and the entered end address, an even number of bytes will be written to the "idaout,bin" file.
+Dumps out the memory contents between the cursor location and the entered end address to "idaout.bin".  An even number of bytes will be written.
 
 #### FindShellCode_V2.idc
 
