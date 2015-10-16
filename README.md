@@ -28,7 +28,7 @@ All found syscalls have a comment added to the IDA Output window and if a ptrace
 
 This script traces the disassembly should the syscall value be declared prior to the syscall.
 
-Not all SYSCALLS are included and would be better if they were stored in an external file.
+Not all syscalls are included and would be better if they were stored in an external file.
 
 
 ####NOPBytes.idc
