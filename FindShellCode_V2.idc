@@ -2,7 +2,7 @@
 //Description: Finds and stops execution once shellcode has been found.
 //Usage: Start the vulnerable program, add breakpoints to important Windows API's BEFORE the malicious file is being read in, then run this script.
 //Usage: Change the doXtimes variable if you want the script to check for shellcode multiple layers up the call chain.
-//Limitations: This script uses generic shellcode detection techniques and may result in false positives.  Manual user intervention and/or modification of this script will be required.
+//Limitations: This script uses generic shellcode detection techniques which may result in false positives.  Manual user intervention and/or modification of this script will be required.
 
 
 auto found = 0;
