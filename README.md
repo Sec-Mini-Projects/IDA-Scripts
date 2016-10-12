@@ -38,3 +38,7 @@ NOPs out a sequence of bytes
 ####XOR.idc
 
 XORs a sequence of bytes with the provided one byte key.
+
+####Reloc Reconstruction 32-bit.py
+
+Creates the .Reloc section for the dumped version of previously packed/protected 32-bit EXE/DLL files.  The resulting ".bin" file and related PE header changes need to be added/changed using the free tool "CFF Explorer".
