@@ -2,7 +2,7 @@
 
 ### IDA-Scripts
 
-The following are a list of IDC scripts I've created over the last couple of years.
+The following are a list of IDA scripts I've created over the last couple of years.
 
 Should you see room for improvement, please contact me.
 This is my first time using GIT, so please be patient.
