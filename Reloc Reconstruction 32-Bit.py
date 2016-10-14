@@ -13,6 +13,7 @@ if (code_start > 0):
             if (data_end > 0):
                 result = []
                 image_base = idaapi.get_imagebase()
+                print "image base %x" % image_base
                 file = open(GetInputFile(),"rb")
                 #MakeUnknown(x,(data_end-data_start),DOUNK_DELNAMES)
                 x = data_start
@@ -97,12 +98,12 @@ if (code_start > 0):
                     file.write(struct.pack("<L",code_start-image_base))
                     file.write(struct.pack("<L",((len(code_section_rvas))*2+10)))
                     for entry in code_section_rvas:
-                        file.write(struct.pack("<H",entry+(code_end-image_base)))    
+                        file.write(struct.pack("<H",entry+(data_start-image_base)))    
                     file.write(struct.pack("<H",0x0000))
                     file.write(struct.pack("<L",data_start-image_base))
                     file.write(struct.pack("<L",((len(data_section_rvas))*2+10)))
                     for entry in data_section_rvas:
-                        file.write(struct.pack("<H",entry+(data_start-code_start)))
+                        file.write(struct.pack("<H",entry+(code_start-image_base)))
                     file.write(struct.pack("<H",0x0000))
                 else:
                     print "###Opening \"reloc.bin\" Failed.###"
