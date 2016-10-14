@@ -87,29 +87,23 @@ if (code_start > 0):
                     x =x + 1
                 code_section_rvas.sort()
                 data_section_rvas.sort()
-                code_section_rvas.append(0x0000)
-                data_section_rvas.append(0x0000)
                 for entry in code_section_rvas:
                     print "%x" % (entry)
                 for entry in data_section_rvas:
                     print "%x" % (entry)
-                print "Length of data is:%d" % len(data_section_rvas)
-                print "Length of code is:%d" % len(code_section_rvas)
+                print "Length of data is:%d" % (len(data_section_rvas)+1)
+                print "Length of code is:%d" % (len(code_section_rvas)+1)
                 if(file):
                     file.write(struct.pack("<L",code_start-image_base))
-                    file.write(struct.pack("<L",((len(code_section_rvas))*2+8)))
+                    file.write(struct.pack("<L",((len(code_section_rvas))*2+10)))
                     for entry in code_section_rvas:
-                        if(entry != 0x0):
-                            file.write(struct.pack("<H",entry+(code_end-image_base)))
-                        else:
-                            file.write(struct.pack("<H",entry))
+                        file.write(struct.pack("<H",entry+(code_end-image_base)))    
+                    file.write(struct.pack("<H",0x0000))
                     file.write(struct.pack("<L",data_refs-image_base))
-                    file.write(struct.pack("<L",((len(data_section_rvas))*2+8)))
+                    file.write(struct.pack("<L",((len(data_section_rvas))*2+10)))
                     for entry in data_section_rvas:
-                        if(entry != 0x0):
-                            file.write(struct.pack("<H",entry+(data_refs-code_start)))
-                        else:
-                            file.write(struct.pack("<H",entry))
+                        file.write(struct.pack("<H",entry+(data_refs-code_start)))
+                    file.write(struct.pack("<H",0x0000))
                 else:
                     print "###Opening \"reloc.bin\" Failed.###"
                 if(file):
