@@ -1,35 +1,35 @@
 import binascii
 #code_start = 0x011D1000
 #code_end = 0x011D2000
-#data_refs = 0x011D2000
-#data_refs_end = 0x011D4000
+#data_start = 0x011D2000
+#data_end = 0x011D4000
 code_start = AskAddr(0,"Please enter start VA of the code.")
 if (code_start > 0):
     code_end = AskAddr(0,"Please enter end VA of the code.")
     if (code_end > 0):
-        data_refs = AskAddr(0,"Please enter start VA of the data.")
-        if (data_refs > 0):
-            data_refs_end = AskAddr(0,"Please enter end VA of the data.")
-            if (data_refs_end > 0):
+        data_start = AskAddr(0,"Please enter start VA of the data.")
+        if (data_start > 0):
+            data_end = AskAddr(0,"Please enter end VA of the data.")
+            if (data_end > 0):
                 result = []
                 image_base = idaapi.get_imagebase()
                 file = open(GetInputFile(),"rb")
-                #MakeUnknown(x,(data_refs_end-data_refs),DOUNK_DELNAMES)
-                x = data_refs
-                while (x < data_refs_end):
+                #MakeUnknown(x,(data_end-data_start),DOUNK_DELNAMES)
+                x = data_start
+                while (x < data_end):
                     physical_addr = x-image_base
                     file.seek(physical_addr)
                     read_bytes = struct.unpack("<L",file.read(4))[0]
-                    if (read_bytes >  image_base and read_bytes < data_refs_end):
+                    if (read_bytes >  image_base and read_bytes < data_end):
                         name = Name(read_bytes)
                         if x not in result:
                             #print "From %x %s" % (read_bytes,name)
                             result.append(x)
                     x =x + 1
-                x = data_refs
-                while (x < data_refs_end):
+                x = data_start
+                while (x < data_end):
                     for ref in XrefsTo(x, 0):
-                        if ref.frm < data_refs_end:
+                        if ref.frm < data_end:
                             y = ref.frm
                             exit = False
                             while (y < ref.frm+4 and exit == False):
@@ -55,7 +55,7 @@ if (code_start > 0):
                         #print "%x" % first
                         if((first <= code_end and first >= image_base) or (second <= code_end and second >= image_base) or (third <= code_end and third >= image_base)):
                             add_to_result = True
-                        if((first <= data_refs_end and first >= data_refs) or (second <= data_refs_end and second >= data_refs) or (third <= data_refs_end and third >= data_refs)):
+                        if((first <= data_end and first >= data_start) or (second <= data_end and second >= data_start) or (third <= data_end and third >= data_start)):
                             add_to_result = True
                         if (add_to_result == True):
                             end = x + 20
@@ -82,7 +82,7 @@ if (code_start > 0):
                 while (x < len(result)):
                     if(result[x] >= code_start and result[x] <= code_end):
                         code_section_rvas.append(result[x]-image_base)
-                    elif(result[x] > data_refs and result[x] < data_refs_end):
+                    elif(result[x] > data_start and result[x] < data_end):
                         data_section_rvas.append(result[x]-image_base)
                     x =x + 1
                 code_section_rvas.sort()
@@ -99,10 +99,10 @@ if (code_start > 0):
                     for entry in code_section_rvas:
                         file.write(struct.pack("<H",entry+(code_end-image_base)))    
                     file.write(struct.pack("<H",0x0000))
-                    file.write(struct.pack("<L",data_refs-image_base))
+                    file.write(struct.pack("<L",data_start-image_base))
                     file.write(struct.pack("<L",((len(data_section_rvas))*2+10)))
                     for entry in data_section_rvas:
-                        file.write(struct.pack("<H",entry+(data_refs-code_start)))
+                        file.write(struct.pack("<H",entry+(data_start-code_start)))
                     file.write(struct.pack("<H",0x0000))
                 else:
                     print "###Opening \"reloc.bin\" Failed.###"
