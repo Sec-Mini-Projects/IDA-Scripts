@@ -1,4 +1,4 @@
-##Brief Descriptions - See IDC files for usage instructions.
+##Brief Descriptions - See IDC/Python files for usage instructions.
 
 ### IDA-Scripts
 
