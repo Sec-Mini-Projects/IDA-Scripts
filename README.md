@@ -8,11 +8,11 @@ Should you see room for improvement, please contact me.
 This is my first time using GIT, so please be patient.
 
 
-####DefineDwords.idc
+#### DefineDwords.idc
 
 Repeatedly defines a sequence of bytes as a DWORD as many times as the user tells the script.
 
-####DumpMemoryToDisk.idc
+#### DumpMemoryToDisk.idc
 
 Dumps out the memory contents between the cursor location and the entered end address to "idaout.bin".  An even number of bytes will be written.
 
@@ -20,7 +20,7 @@ Dumps out the memory contents between the cursor location and the entered end ad
 
 Finds shellcode and stops execution once found, allowing for the shellcode to be stepped through and debugged.
 
-####FindSysCalls_x32.idc / FindSysCalls_x64.idc
+#### FindSysCalls_x32.idc / FindSysCalls_x64.idc
 
 Scans for 32/64 bit syscall operands and renames the function that the syscall is located within and adds a comment to the syscall instruction line.
 
@@ -31,14 +31,14 @@ This script traces the disassembly should the syscall value be declared prior to
 Not all syscalls are included and would be better if they were stored in an external file.
 
 
-####NOPBytes.idc
+#### NOPBytes.idc
 
 NOPs out a sequence of bytes
 
-####XOR.idc
+#### XOR.idc
 
 XORs a sequence of bytes with the provided one byte key.
 
-####Reloc Reconstruction 32-bit.py
+#### Reloc Reconstruction 32-bit.py
 
 Creates the .Reloc section for the dumped version of previously packed/protected 32-bit EXE/DLL files.  The resulting ".bin" file and related PE header changes need to be added/changed using the free tool "CFF Explorer".
